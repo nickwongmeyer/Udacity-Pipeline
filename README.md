@@ -1,4 +1,4 @@
 # Udacity-Pipeline-with-Airflow
 
 
-![](Udacity-Pipeline/pipeline_graph.PNG)
+![](Udacity-Pipeline/pipeline_graph.png)
