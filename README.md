@@ -21,7 +21,7 @@ The frame under each procedure should be turn into green as long as they are run
 
 <img src="images/pipeline_graph.PNG">
  
-## 1.Creating table and run the ETL 
+### 1.Creating table and run the ETL 
 - ```create_table.sql``` a SQL queries from Project 3 in DataWarehouse in order to create structural schema in AWS redshift. 
 
 
@@ -33,16 +33,16 @@ The directory as follows are placed under ```plugins/operators``` directory of t
 
 - ```stage_redshift.py``` copies Json data from S3 to Redshift data warehouse into the staging tables, which was operated under ```StageToRedshiftOperator``` in ```dag``` file.
 
-### . Loading the data into the structural tables set by the SQL files above  
+### 3.Loading the data into the structural tables set by the SQL files above  
 - ```load_dimension.py``` loads a dimension tables from data in the staging tables, which was operated under ```LoadDimensionOperator``` in ```dag``` file. 
 
 - ```load_fact.py``` loads a fact table from data in the staging tables, which was operated under ```LoadFactOperator``` in ```dag``` file. 
 
-###4. Running the quality check against the SQL queries. 
+### 4.Running the quality check against the SQL queries. 
 
 - ```data_quality.py``` runs a quality check passing the SQL query and ensure that the results match the arguments, or this step will be regarded as 'failure' under the graph. 
 
-### 5. Ensuring all the coding are written correctly prior running the airflows. 
+### 5.Ensuring all the coding are written correctly prior running the airflows. 
 
 - ```udac_example_dag.py``` the task file to run the whole process of the airflow which provides the entire connectivities with all the plugins and operators from S3 > Redshift > the airflow. 
 
