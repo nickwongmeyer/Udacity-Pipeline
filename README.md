@@ -13,27 +13,38 @@ As mentioned briefly, the song and log data under JSON format were loaded from U
 
 - Redshift Connection via Postgres Database application, ensuring the host is the endpoint of redshift must be filled, along with your schema name, name and password of the redshift login and the port must be 5439.  
 
-# Structure 
+# Structure and process
 
-### dag file
+The steps should be followed under similar to the graph. 
 
-- ```udac_example_dag.py``` the task file to run the whole process of the airflow which provides the entire connectivities with all the plugins and operators from S3 > Redshift > the airflow. 
+The frame under each procedure should be turn into green as long as they are run sucessfully. 
 
-### SQL files
-
+<img src="images/pipeline_graph.PNG">
+ 
+## 1.Creating table and run the ETL 
 - ```create_table.sql``` a SQL queries from Project 3 in DataWarehouse in order to create structural schema in AWS redshift. 
 
 
 - ```sql_queries.sql``` a SQL queries to process the data under ETL. More importantly, this will transform all the unstructural data from S3 to a required structural into the new star schema table. 
 
+
 The directory as follows are placed under ```plugins/operators``` directory of the Airflow installation: 
+### 2.copying the data from S3 to redshift AWS. 
 
-- (1)```stage_redshift.py``` copies Json data from S3 to Reshift data warehouse into the staging tables, which was operated under ```StageToRedshiftOperator``` in ```dag``` file. 
-- (2a)```load_dimension.py``` loads a dimension tables from data in the staging tables, which was operated under ```LoadDimensionOperator``` in ```dag``` file. 
+- ```stage_redshift.py``` copies Json data from S3 to Redshift data warehouse into the staging tables, which was operated under ```StageToRedshiftOperator``` in ```dag``` file.
 
-- (2b) ```load_fact.py``` loads a fact table from data in the staging tables, which was operated under ```LoadFactOperator``` in ```dag``` file. 
+### . Loading the data into the structural tables set by the SQL files above  
+- ```load_dimension.py``` loads a dimension tables from data in the staging tables, which was operated under ```LoadDimensionOperator``` in ```dag``` file. 
 
-- (3) ```load_fact.py``` 
+- ```load_fact.py``` loads a fact table from data in the staging tables, which was operated under ```LoadFactOperator``` in ```dag``` file. 
+
+###4. Running the quality check against the SQL queries. 
+
+- ```data_quality.py``` runs a quality check passing the SQL query and ensure that the results match the arguments, or this step will be regarded as 'failure' under the graph. 
+
+### 5. Ensuring all the coding are written correctly prior running the airflows. 
+
+- ```udac_example_dag.py``` the task file to run the whole process of the airflow which provides the entire connectivities with all the plugins and operators from S3 > Redshift > the airflow. 
 
 
 # Result of the project
@@ -44,6 +55,4 @@ Once if all the steps are successfully run, all the spot under the tree diagram 
 
 
 
-The frame under each procedure should be turn into green as long as they are run sucessfully. 
 
-<img src="images/pipeline_graph.PNG">
