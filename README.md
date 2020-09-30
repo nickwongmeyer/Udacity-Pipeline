@@ -17,9 +17,12 @@ As mentioned briefly, the song and log data under JSON format were loaded from U
 
 ### dag file
 
+- ```udac_example_dag.py``` the task file to run the whole process of the airflow which provides the entire connectivities with all the plugins and operators from S3 > Redshift > the airflow. 
+
+### SQL files
+
 - ```create_table.sql``` a SQL queries from Project 3 in DataWarehouse in order to create structural schema in AWS redshift. 
 
-- ```udac_example_dag.py``` the task file to run the whole process of the airflow which provides the entire connectivities with all the plugins and operators from S3 > Redshift > the airflow. 
 
 - ```sql_quries.sql``` a SQL queries to process the data under ETL. More importantly, this will transform all the unstructural data from S3 to a required structural into the new star schema table. 
 
