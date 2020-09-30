@@ -24,8 +24,16 @@ As mentioned briefly, the song and log data under JSON format were loaded from U
 - ```create_table.sql``` a SQL queries from Project 3 in DataWarehouse in order to create structural schema in AWS redshift. 
 
 
-- ```sql_quries.sql``` a SQL queries to process the data under ETL. More importantly, this will transform all the unstructural data from S3 to a required structural into the new star schema table. 
+- ```sql_queries.sql``` a SQL queries to process the data under ETL. More importantly, this will transform all the unstructural data from S3 to a required structural into the new star schema table. 
 
+The directory as follows are placed under ```plugins/operators``` directory of the Airflow installation: 
+
+- (1)```stage_redshift.py``` copies Json data from S3 to Reshift data warehouse into the staging tables, which was operated under ```StageToRedshiftOperator``` in ```dag``` file. 
+- (2a)```load_dimension.py``` loads a dimension tables from data in the staging tables, which was operated under ```LoadDimensionOperator``` in ```dag``` file. 
+
+- (2b) ```load_fact.py``` loads a fact table from data in the staging tables, which was operated under ```LoadFactOperator``` in ```dag``` file. 
+
+- (3) ```load_fact.py``` 
 
 
 # Result of the project
