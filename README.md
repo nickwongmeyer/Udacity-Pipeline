@@ -21,11 +21,12 @@ As mentioned briefly, the song and log data under JSON format were loaded from U
 
 # Result of the project
 
-Once if all the steps are successfully run, all the spot under the graph should be turn into green. 
+Once if all the steps are successfully run, all the spot under the tree diagram should be turn into green. 
 
 <img src="images/tree_graph.PNG">
 
 
 
+The frame under each procedure should be turn into green as long as they are run sucessfully. 
 
 <img src="images/pipeline_graph.PNG">
