@@ -6,8 +6,14 @@ Project 5: Data Pipeline
 
 The learning outcome of this project is about how to use Apache Airflow to run automation under a regular basis, including instant time to time, hourly, daily, weekly, monthly or yearly. The basis of running an Airflow are highly referred from running an ETL pipeline first to deliver the data through AWS cloud, and re-structral the data precisely which enable the data analyst the run the analysis more effectively. 
 
-As mentioned briefly, the song and log data under JSON format were loaded from Udacity publicly accessible S3 bucket via ETL, and processes the data under a star schema into the AWS Redshift. 
+As mentioned briefly, the song and log data under JSON format were loaded from Udacity publicly accessible S3 bucket via ETL, and processes the data under a star schema into the AWS Redshift. Once the data are run regularly the scheduled ETL, a data quality check will be implemented to ensure the data are run smoothly under the regular monitoring process.
 
+# Configuration 
+- AWS credentials must be filled in probably under the connection menu in Airflow 
+
+- Redshift Connection via Postgres Database application, access them via the Secret username and Secret password, ensuring that the user has full adminaccess under 'AmazonRedshiftFullAccess' and 'AmazonS3ReadOnlyAccess'. 
+
+#Structure 
 
 
 
