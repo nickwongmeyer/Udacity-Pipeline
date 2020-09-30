@@ -1,4 +1,3 @@
 # Udacity-Pipeline-with-Airflow
 
-
-![](images/pipeline_graph.png)
+<image src="images/tree_graph.png">
