@@ -13,9 +13,15 @@ As mentioned briefly, the song and log data under JSON format were loaded from U
 
 - Redshift Connection via Postgres Database application, ensuring the host is the endpoint of redshift must be filled, along with your schema name, name and password of the redshift login and the port must be 5439.  
 
-#Structure 
+# Structure 
 
+### dag file
 
+- ```create_table.sql``` a SQL queries from Project 3 in DataWarehouse in order to create structural schema in AWS redshift. 
+
+- ```udac_example_dag.py``` the task file to run the whole process of the airflow which provides the entire connectivities with all the plugins and operators from S3 > Redshift > the airflow. 
+
+- ```sql_quries.sql``` a SQL queries to process the data under ETL. More importantly, this will transform all the unstructural data from S3 to a required structural into the new star schema table. 
 
 
 
