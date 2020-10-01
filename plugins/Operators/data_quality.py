@@ -10,13 +10,12 @@ class DataQualityOperator(BaseOperator):
     def __init__(self,
                  redshift_conn_id="",
                  query_tested="",
-                 expected_result="",
                  *args, **kwargs):
 
         super(DataQualityOperator, self).__init__(*args, **kwargs)
         self.redshift_conn_id = redshift_conn_id
         self.query_tested = query_tested
-        self.expected_result = expected_result
+        
 
     def execute(self, context):
         
@@ -25,5 +24,10 @@ class DataQualityOperator(BaseOperator):
         records =reshift_hook.get_records(self.query_tested)
         if len(records) < 1 or len(records[0]) < 1:
             raise ValueError(f" failure of Data Quality Check")
-        else:
-            self.log.info('Data quality check success')
+        num_records =records[0][0]
+        if num_records <1:
+            raise ValueError(f"failure of Data Quality Check")
+        self.log.info(f"Data quality check success")
+            
+            dq_checks=[
+        {'check_sql': "SELECT COUNT(*) FROM users WHERE userid is null", 'expected_result': 0},
